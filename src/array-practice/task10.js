@@ -8,8 +8,6 @@
  * membersOnActiveMeetups(meetups); // 1500
  */
 
-// Раскомментировать нижнее, при начале реализации
-
 export const meetups = [
   { name: 'JavaScript', isActive: true, members: 100 },
   { name: 'Angular', isActive: true, members: 900 },
