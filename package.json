@@ -9,16 +9,16 @@
     "start": "webpack-dev-server --open",
     "build": "webpack",
     "lint": "eslint --debug src/",
-    "lint:write": "eslint --debug src/ --fix",
+    "lint:write": "eslint --debug \"src/**/*.{js,ts}\" --fix",
     "prettier": "prettier --write src/**/*.ts"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-compile": "lint:write"
     }
   },
   "lint-staged": {
-    "*.js": [
+    "*.ts": [
       "yarn lint:write",
       "git add"
     ]

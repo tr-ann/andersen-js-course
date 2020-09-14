@@ -2,13 +2,15 @@ import { recipes } from '../../../storage/recipes.storage';
 import { itemsController } from '../../items/controllers/ItemsController';
 import { recipesController } from '../../recipes/controllers/RecipesController';
 import { workbenchModel } from '../models/WorkbenchModel';
+import { workbenchView } from '../views/WorkbenchView';
 
 class WorkbenchController {
+
   createItem(recipeId: number, itemsId: Array<number>) {
     let recipe = recipes.find(el => el.id == recipeId);
 
     if (workbenchModel.isCorrectRecipe(recipe, itemsId)) {
-      itemsController.addItem(name);
+      itemsController.addItem(recipe.itemName);
     }
   }
 
@@ -17,6 +19,11 @@ class WorkbenchController {
       recipesController.addItem(name, itemName, ingredients);
     }
   }
+
+  drawNewIngredient(ingredient: HTMLElement) {
+    workbenchView.drawNewIngredient(ingredient);
+  }
+  
 }
 
 export let workbenchController = new WorkbenchController();
