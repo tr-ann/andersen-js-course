@@ -4,6 +4,8 @@ import { recipes } from '../../../storage/recipes.storage';
 
 class RecipesView {
 
+  // добавить св-ва: куда вставить элемент
+
   createRecipesList(): HTMLElement {
     // отрисовка списка рецептов
     const recipesBlock = document.createElement('div');

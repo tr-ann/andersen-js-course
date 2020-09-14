@@ -4,6 +4,8 @@ import { recipesView } from './modules/recipes/views/RecipesView';
 import { itemsView } from './modules/items/views/ItemsView';
 import { eventEmitter } from './events/index';
 
+
+
 const workbenchFragment = workbenchView.createWorkbench();
 const recipesFragment = recipesView.createRecipesList();
 const itemsFragment = itemsView.createItemsList();
@@ -12,6 +14,7 @@ let mainBlock = document.createElement('div');
 mainBlock.style.display = 'flex';
 mainBlock.style.justifyContent = 'space-around';
 
+// убрать 
 mainBlock.appendChild(itemsFragment);
 mainBlock.appendChild(workbenchFragment);
 mainBlock.appendChild(recipesFragment);
