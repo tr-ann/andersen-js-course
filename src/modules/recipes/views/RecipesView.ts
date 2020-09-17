@@ -1,36 +1,37 @@
-import { Recipe } from '../types/recipe.type';
-import { Cell } from '../../../helpers/Cell'
+import { Cell } from '../../../common/Cell';
 import { recipes } from '../../../storage/recipes.storage';
+import { eventEmitter } from '../../../events/EventEmitter';
+import { RECIPE_CREATED } from '../../../constants/events';
+import { RECIPES_LIST_ELEMENT_ID, WORKBENCH_RECIPE_ELEMENT_ID } from '../../../constants/elements.id';
 
 class RecipesView {
-
-  // добавить св-ва: куда вставить элемент
-
-  createRecipesList(): HTMLElement {
-    // отрисовка списка рецептов
+  constructor() {
+    eventEmitter.on(RECIPE_CREATED, this.drawNewRecipe);
+  }
+  
+  drawRecipesList(destination: HTMLElement) {
     const recipesBlock = document.createElement('div');
-    // заголовок
+    
     const recipesName = document.createElement('h3');
     recipesName.textContent = 'Recipes';
 
     const recipesList = document.createElement('div');
-    recipesList.style.padding = '20px';
-    recipesList.style.border = 'solid #00FF00 1px';
+    recipesList.classList.add('container');
 
-    recipes.forEach((element) => {
-      let cell = new Cell(`recipe#${element.id}`, element.name);
-      recipesList.appendChild(cell.createElement());
-    })
+    recipes.forEach(element => {
+      let cell = Cell.createElement(`${RECIPES_LIST_ELEMENT_ID}#${element.id}`, element.name, {draggable: true});
+      recipesList.appendChild(cell);
+    });
 
     recipesBlock.appendChild(recipesName);
     recipesBlock.appendChild(recipesList);
 
-    return recipesBlock;
+    destination.appendChild(recipesBlock);
   }
 
-  drawNewRecipe(recipe: Recipe) {
-    // document.get('items')
-    // ...
+  drawNewRecipe(recipeName: string) {
+    let recipeElement = document.getElementById(WORKBENCH_RECIPE_ELEMENT_ID);
+    recipeElement.textContent = recipeName;
   }
 }
 

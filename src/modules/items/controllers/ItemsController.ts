@@ -1,10 +1,14 @@
+import { eventEmitter } from '../../../events/EventEmitter';
+import { ITEM_CREATED } from '../../../constants/events';
 import { itemsModel } from '../models/ItemsModel';
-import { itemsView } from '../views/ItemsView';
 
 class ItemsController {
+  constructor() {}
+
   addItem(name: string) {
-    let item = itemsModel.addItem(name);
-    itemsView.drawNewItem(item);
+    let item = itemsModel.createItem(name);
+
+    eventEmitter.emit(ITEM_CREATED, item);
   }
 }
 

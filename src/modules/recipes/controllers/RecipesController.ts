@@ -1,11 +1,17 @@
+import { eventEmitter } from '../../../events/EventEmitter';
 import { recipesModel } from '../models/RecipesModel';
-import { recipesView } from '../views/RecipesView';
+import { RECIPE_CREATED } from '../../../constants/events';
+import { Item } from '../../items/types/item.type';
 
 class RecipesController {
-  addItem(name: string, itemName: string, ingredients: Array<number>) {
-    let recipe = recipesModel.addRecipe(name, itemName, ingredients);
-    recipesView.drawNewRecipe(recipe);
+
+  constructor() {}
+
+  addRecipe(newRecipe: { name: string, itemName: string }, ingredients: Array<Item>) {
+    let recipe = recipesModel.createRecipe(newRecipe.name, newRecipe.itemName, ingredients);
+    eventEmitter.emit(RECIPE_CREATED, recipe);
   }
+
 }
 
 export let recipesController = new RecipesController();

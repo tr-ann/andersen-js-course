@@ -6,3 +6,19 @@ body {
 h1 {
   text-align: center;
 }
+
+.container {
+  border: solid #000000 3px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 300px;
+  padding: 5px;
+}
+
+.item {
+  border: solid 1px #0000FF;
+  flex-grow: 1;
+  padding: 10px;
+  margin: 3px;
+  text-align: center;
+}

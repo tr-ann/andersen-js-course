@@ -1,23 +1,27 @@
 import { isEqual } from '../../../helpers/isEqualArrays';
 import { items } from '../../../storage/items.storage';
+import { Item } from '../../items/types/item.type';
 import { Recipe } from '../../recipes/types/recipe.type';
 
 class WorkbenchModel {
-  isCorrectRecipe(recipe: Recipe, itemsId: Array<number>): boolean {
-    if (
-      recipe &&
-      this.isCorrectIngredients(itemsId) &&
-      isEqual(recipe.ingredients, itemsId)
-    ) {
+
+  isCorrectRecipe(recipe: Recipe, items: Array<Item>): boolean {
+    if (recipe && this.isCorrectIngredients(items) && isEqual(recipe.ingredients, items.map(item => item.id))) {
       return true;
     }
 
-    console.log('error in isCorrectRecipe')
+    console.log(recipe)
+    console.log(recipe.ingredients);
+    console.log(items.map(item => item.id));
+
+    // thor new Error
+    console.log('error in isCorrectRecipe');
     return false;
   }
 
-  isCorrectIngredients(ingredientsId: Array<number>): boolean {
-    if (!ingredientsId.length && ingredientsId.some(el => !items.find(item => item.id == el))) {
+  isCorrectIngredients(ingredients: Array<Item>): boolean {
+    if (!ingredients.length && ingredients.some(ingredient => !items.find(item => item.id == ingredient.id))) {
+      // throw new Error
       console.log('error in isCorrectIngredients');
 
       return false;
@@ -25,6 +29,7 @@ class WorkbenchModel {
 
     return true;
   }
+  
 }
 
 export let workbenchModel = new WorkbenchModel();
