@@ -1,7 +1,7 @@
 import { ERROR_CAUGHT } from '../../../constants/events';
 import { eventEmitter } from '../../../events/EventEmitter';
 import { isEqual } from '../../../helpers/isEqualArrays';
-import { items } from '../../../storage/items.storage';
+import { itemsStorage } from '../../../storage/items.storage';
 import { Item } from '../../items/types/item.type';
 import { Recipe } from '../../recipes/types/recipe.type';
 
@@ -20,7 +20,7 @@ class WorkbenchModel {
   isCorrectIngredients(ingredients: Array<Item>): boolean {
     if (
       !ingredients.length &&
-      ingredients.some(ingredient => !items.find(item => item.id == ingredient.id))
+      ingredients.some(ingredient => !itemsStorage.list().find(item => item.id == ingredient.id))
     ) {
       throw new Error('неправильные ингредиенты');
     }

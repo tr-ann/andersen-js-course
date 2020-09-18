@@ -1,7 +1,7 @@
 import { eventEmitter } from '../../../events/EventEmitter';
 import { ITEM_CREATED } from '../../../constants/events';
 import { Cell } from '../../../common/Cell';
-import { items } from '../../../storage/items.storage';
+import { itemsStorage } from '../../../storage/items.storage';
 import { Item } from '../types/item.type';
 import { ITEMS_LIST_ELEMENT_ID, ITEM_ELEMENT_ID } from '../../../constants/elements.id';
 
@@ -21,8 +21,8 @@ class ItemsView {
     itemsList.id = ITEMS_LIST_ELEMENT_ID;
     itemsList.classList.add('container');
 
-    items.forEach(element => {
-      let cell = Cell.createElement(`${ITEM_ELEMENT_ID}#${element.id}`, element.name, {
+    itemsStorage.list().forEach(item => {
+      let cell = Cell.createElement(`${ITEM_ELEMENT_ID}#${item.id}`, item.name, {
         draggable: true,
       });
       itemsList.appendChild(cell);

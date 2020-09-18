@@ -1,20 +1,22 @@
-import { count } from '../../../helpers/counter';
-import { recipes } from '../../../storage/recipes.storage';
+import { counter } from '../../../helpers/counter';
+import { recipesStorage } from '../../../storage/recipes.storage';
 import { Item } from '../../items/types/item.type';
 import { Recipe } from '../types/recipe.type';
 
 class RecipesModel {
+  private count = counter(recipesStorage.length + 1);
+
   createRecipe(name: string, itemName: string, ingredients: Array<Item>): Recipe {
     let ingredientsId = ingredients.map(ingredient => ingredient.id);
-    let recipe: Recipe = { id: count(), name, itemName, ingredients: ingredientsId };
+    let recipe: Recipe = { id: this.count(), name, itemName, ingredients: ingredientsId };
 
-    recipes.push(recipe);
+    recipesStorage.addRecipe(recipe);
 
     return recipe;
   }
 
   getById(id: number) {
-    return recipes.find(recipe => recipe.id == id);
+    return recipesStorage.list().find(recipe => recipe.id == id);
   }
 }
 

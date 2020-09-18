@@ -1,17 +1,19 @@
-import { items } from '../../../storage/items.storage';
-import { count } from '../../../helpers/counter';
+import { itemsStorage } from '../../../storage/items.storage';
+import { counter } from '../../../helpers/counter';
 import { Item } from '../types/item.type';
 
 class ItemsModel {
+  private count = counter(itemsStorage.length + 1);
+
   createItem(name: string): Item {
-    let item: Item = { id: count(), name };
-    items.push(item);
+    let item: Item = { id: this.count(), name };
+    itemsStorage.add(item);
 
     return item;
   }
 
   getById(id: number) {
-    return items.find(item => item.id == id);
+    return itemsStorage.list().find(item => item.id == id);
   }
 }
 

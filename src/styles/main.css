@@ -3,6 +3,10 @@ body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+button {
+  margin: 5px;
+}
+
 h1 {
   text-align: center;
 }

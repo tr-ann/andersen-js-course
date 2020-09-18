@@ -1,7 +1,5 @@
-function counter() {
-  let count = 4;
+export function counter(start: number = 1) {
+  let count = start;
 
   return () => count++;
 }
-
-export let count = counter();
