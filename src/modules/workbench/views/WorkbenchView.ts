@@ -122,7 +122,7 @@ class WorkbenchView {
 
     for (let i = 0; i < 6; i++) {
       let ingredientElement = Cell.createElement(`${INGREDIENT_ELEMENT_ID}#${i + 1}`, '', {
-        style: { minHeight: '50px', minWidth: '50px' },
+        style: { minHeight: '40px', minWidth: '50px' },
       });
 
       ingredientsList.appendChild(ingredientElement);

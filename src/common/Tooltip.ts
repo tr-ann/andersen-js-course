@@ -11,18 +11,12 @@ export class Tooltip {
   }
 
   private setTooltip(recipe: Recipe) {
-    console.log(1);
-
     let ingredientsName = itemsStorage.list()
       .filter(item => recipe.ingredients.some(itemId => itemId == item.id));
-
-      console.log(2);
 
     this.tooltipText = `<span class="tooltip-name">${recipe.name}</span><br>
     имя предмета: ${recipe.itemName}<br>
     ингредиенты: ${ingredientsName.map(item => item.name).join(', ')}`;
-
-    console.log(3);
   }
 
   getTooltip() {

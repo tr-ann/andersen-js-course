@@ -41,6 +41,12 @@ class RecipesView {
   drawNewRecipe(recipe: Recipe) {
     let recipesList = document.getElementById(RECIPES_LIST_ELEMENT_ID);
     let newRec = Cell.createElement(`${RECIPE_ELEMENT_ID}#${recipe.id}`, recipe.name, {draggable: true});
+
+    let tooltip = new Tooltip(recipe);
+    newRec.dataset.tooltip = tooltip.getTooltip();
+    newRec.onmouseover = tooltip.onmouseover;
+    newRec.onmouseout = tooltip.onmouseout;
+
     recipesList.appendChild(newRec);
   }
 }
