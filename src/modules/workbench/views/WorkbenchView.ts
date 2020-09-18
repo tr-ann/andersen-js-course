@@ -3,6 +3,7 @@ import { workbenchController } from '../controllers/WorkbenchController';
 import { eventEmitter } from '../../../events/EventEmitter';
 import { INGREDIENTS_RESET, INGREDIENT_ADDED, RECIPE_ADDED } from '../../../constants/events';
 import {
+  ERROR_ELEMENT_ID,
   INGREDIENT_ELEMENT_ID,
   ITEM_ELEMENT_ID,
   NEW_ITEM_NAME,
@@ -172,6 +173,9 @@ class WorkbenchView {
     } else {
       document.getElementById(WORKBENCH_RECIPE_ELEMENT_ID).textContent = ''
     }
+
+    document.getElementById(ERROR_ELEMENT_ID).remove();
+
   }
 
   private ondrop(event: DragEvent) {

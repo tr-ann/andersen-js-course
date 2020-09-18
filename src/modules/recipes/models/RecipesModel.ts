@@ -10,7 +10,7 @@ class RecipesModel {
     let ingredientsId = ingredients.map(ingredient => ingredient.id);
     let recipe: Recipe = { id: this.count(), name, itemName, ingredients: ingredientsId };
 
-    recipesStorage.addRecipe(recipe);
+    recipesStorage.add(recipe);
 
     return recipe;
   }

@@ -7,6 +7,10 @@ class ItemsModel {
 
   createItem(name: string): Item {
     let item: Item = { id: this.count(), name };
+    if (itemsStorage.list().some((item) => item.name == name)) {
+      throw new Error('Такой элемент уже существует');
+    }
+
     itemsStorage.add(item);
 
     return item;
