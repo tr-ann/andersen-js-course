@@ -2,10 +2,18 @@ import { Cell } from '../../../common/Cell';
 import { workbenchController } from '../controllers/WorkbenchController';
 import { eventEmitter } from '../../../events/EventEmitter';
 import { INGREDIENTS_RESET, INGREDIENT_ADDED, RECIPE_ADDED } from '../../../constants/events';
-import { INGREDIENT_ELEMENT_ID, ITEM_ELEMENT_ID, NEW_ITEM_NAME, NEW_RECIPE_NAME, RECIPE_ELEMENT_ID, WORKBENCH_INGREDIENTS_ELEMENT_ID, WORKBENCH_RECIPE_ELEMENT_ID } from '../../../constants/elements.id';
+import {
+  INGREDIENT_ELEMENT_ID,
+  ITEM_ELEMENT_ID,
+  NEW_ITEM_NAME,
+  NEW_RECIPE_NAME,
+  RECIPE_ELEMENT_ID,
+  WORKBENCH_ELEMENT_ID,
+  WORKBENCH_INGREDIENTS_ELEMENT_ID,
+  WORKBENCH_RECIPE_ELEMENT_ID,
+} from '../../../constants/elements.id';
 
 class WorkbenchView {
-
   private isCreatingRecipe = false;
 
   private existingRecipeBlockId = 'existing-recipe';
@@ -15,7 +23,7 @@ class WorkbenchView {
     eventEmitter.on(INGREDIENT_ADDED, (data: any) => {
       this.drawNewIngredient(data.itemName, data.destinationId);
     });
-    
+
     eventEmitter.on(RECIPE_ADDED, (recipeName: string) => {
       this.drawNewRecipe(recipeName);
     });
@@ -27,6 +35,7 @@ class WorkbenchView {
 
   drawWorkbench(destination: HTMLElement) {
     const workbenchBlock = document.createElement('div');
+    workbenchBlock.id = WORKBENCH_ELEMENT_ID;
     const workbenchName = document.createElement('h3');
     workbenchName.textContent = 'Workbench';
 
@@ -51,8 +60,7 @@ class WorkbenchView {
     if (this.isCreatingRecipe) {
       currentRecipeBlock = document.getElementById(this.existingRecipeBlockId);
       currentRecipeBlock.replaceWith(this.creatingRecipeBlock());
-    }
-    else {
+    } else {
       currentRecipeBlock = document.getElementById(this.creatingRecipeBlockId);
       currentRecipeBlock.replaceWith(this.existingRecipeBlock());
     }
@@ -135,7 +143,7 @@ class WorkbenchView {
 
     let resetIngredientsButton = document.createElement('button');
     resetIngredientsButton.textContent = 'reset';
-    resetIngredientsButton.onclick = workbenchController.resetIngredients;
+    resetIngredientsButton.onclick = () => workbenchController.resetIngredients();
 
     buttonBlock.appendChild(createItemButton);
     buttonBlock.appendChild(resetIngredientsButton);
@@ -147,7 +155,7 @@ class WorkbenchView {
     let ingredientElement = document.getElementById(destinationId);
     ingredientElement.textContent = itemName;
   }
-  
+
   drawNewRecipe(recipeName: string) {
     let craftingRecipeElement = document.getElementById(WORKBENCH_RECIPE_ELEMENT_ID);
     craftingRecipeElement.textContent = recipeName;
@@ -155,11 +163,15 @@ class WorkbenchView {
 
   resetIngredients() {
     for (let i = 0; i < 6; i++) {
-      let ingredientElement = document.getElementById(`${INGREDIENT_ELEMENT_ID}#${i+1}`);
+      let ingredientElement = document.getElementById(`${INGREDIENT_ELEMENT_ID}#${i + 1}`);
       ingredientElement.textContent = '';
     }
-    let workbenchRecipeElement = document.getElementById(WORKBENCH_RECIPE_ELEMENT_ID);
-    workbenchRecipeElement.textContent = '';
+    if (this.isCreatingRecipe) {
+      (<HTMLInputElement>document.getElementById(NEW_RECIPE_NAME)).value = '';
+      (<HTMLInputElement>document.getElementById(NEW_ITEM_NAME)).value = '';
+    } else {
+      document.getElementById(WORKBENCH_RECIPE_ELEMENT_ID).textContent = ''
+    }
   }
 
   private ondrop(event: DragEvent) {
@@ -167,8 +179,12 @@ class WorkbenchView {
     let target = event.target as HTMLElement;
     let dragElem = event.dataTransfer.getData('text');
 
-    if (dragElem.split('#')[0] == ITEM_ELEMENT_ID && target.id.split('#')[0] == INGREDIENT_ELEMENT_ID) {
-      workbenchController.addIngredient(dragElem, target.id);
+    if (
+      dragElem.split('#')[0] == ITEM_ELEMENT_ID &&
+      target.id.split('#')[0] == INGREDIENT_ELEMENT_ID
+    ) {
+      let replaceItemName = target.textContent ? target.textContent : '';
+      workbenchController.addIngredient(dragElem, target.id, replaceItemName);
     }
     if (dragElem.split('#')[0] == RECIPE_ELEMENT_ID && target.id == WORKBENCH_RECIPE_ELEMENT_ID) {
       workbenchController.addRecipe(dragElem);
@@ -178,7 +194,6 @@ class WorkbenchView {
   private allowDrop(event: DragEvent) {
     event.preventDefault();
   }
-
 }
 
 export let workbenchView = new WorkbenchView();

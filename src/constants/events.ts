@@ -5,3 +5,5 @@ export const INGREDIENT_ADDED = 'ingredient-added';
 export const RECIPE_ADDED = 'recipe-added';
 
 export const INGREDIENTS_RESET = 'recipe-reset';
+
+export const ERROR_CAUGHT = 'error-caught';

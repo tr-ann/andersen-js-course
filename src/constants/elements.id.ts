@@ -14,3 +14,4 @@ export const RECIPE_ELEMENT_ID = 'recipe';
 export const ITEMS_LIST_ELEMENT_ID = 'items';
 export const ITEM_ELEMENT_ID = 'item';
 
+export const ERROR_ELEMENT_ID = 'error';

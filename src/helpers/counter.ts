@@ -1,5 +1,5 @@
 function counter() {
-  let count = 1;
+  let count = 4;
 
   return () => count++;
 }

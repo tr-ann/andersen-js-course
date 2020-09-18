@@ -5,9 +5,9 @@ import { Recipe } from '../types/recipe.type';
 
 class RecipesModel {
   createRecipe(name: string, itemName: string, ingredients: Array<Item>): Recipe {
-    let ingredientsId = ingredients.map((ingredient => ingredient.id));
+    let ingredientsId = ingredients.map(ingredient => ingredient.id);
     let recipe: Recipe = { id: count(), name, itemName, ingredients: ingredientsId };
-    
+
     recipes.push(recipe);
 
     return recipe;

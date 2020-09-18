@@ -22,7 +22,9 @@ class ItemsView {
     itemsList.classList.add('container');
 
     items.forEach(element => {
-      let cell = Cell.createElement(`${ITEM_ELEMENT_ID}#${element.id}`, element.name, {draggable: true});
+      let cell = Cell.createElement(`${ITEM_ELEMENT_ID}#${element.id}`, element.name, {
+        draggable: true,
+      });
       itemsList.appendChild(cell);
     });
 
@@ -34,7 +36,9 @@ class ItemsView {
 
   drawNewItem(item: Item) {
     let itemListElement = document.getElementById(ITEMS_LIST_ELEMENT_ID);
-    let itemElement = Cell.createElement(`${ITEM_ELEMENT_ID}#${item.id}`, item.name, {draggable: true});
+    let itemElement = Cell.createElement(`${ITEM_ELEMENT_ID}#${item.id}`, item.name, {
+      draggable: true,
+    });
 
     itemListElement.appendChild(itemElement);
   }
