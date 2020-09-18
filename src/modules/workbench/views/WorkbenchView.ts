@@ -115,7 +115,6 @@ class WorkbenchView {
       let ingredientElement = Cell.createElement(`${INGREDIENT_ELEMENT_ID}#${i + 1}`, '', {
         style: { minHeight: '50px', minWidth: '50px' },
       });
-      ingredientElement.ondrop = this.ondrop;
 
       ingredientsList.appendChild(ingredientElement);
     }
@@ -166,24 +165,18 @@ class WorkbenchView {
   private ondrop(event: DragEvent) {
     event.preventDefault();
     let target = event.target as HTMLElement;
-    let itemElementId = event.dataTransfer.getData('text');
-    //let itemElementId = 'item#1';
-    workbenchController.addIngredient(itemElementId, target.id);
+    let dragElem = event.dataTransfer.getData('text');
+
+    if (dragElem.split('#')[0] == ITEM_ELEMENT_ID && target.id.split('#')[0] == INGREDIENT_ELEMENT_ID) {
+      workbenchController.addIngredient(dragElem, target.id);
+    }
+    if (dragElem.split('#')[0] == RECIPE_ELEMENT_ID && target.id == WORKBENCH_RECIPE_ELEMENT_ID) {
+      workbenchController.addRecipe(dragElem);
+    }
   }
 
   private allowDrop(event: DragEvent) {
-    //let draggableElementId = 'item#1'; 
-    //let draggableElementId = 'recipe#1'; 
-
-    let draggableElementId = event.dataTransfer.getData('text');
-    let target = event.target as HTMLElement;
-
-    if (
-      (draggableElementId.split('#')[0] == ITEM_ELEMENT_ID && target.id.split('#')[0] == INGREDIENT_ELEMENT_ID) ||
-      (draggableElementId.split('#')[0] == RECIPE_ELEMENT_ID && target.id == WORKBENCH_RECIPE_ELEMENT_ID)
-    ) {
-      event.preventDefault();
-    }
+    event.preventDefault();
   }
 
 }

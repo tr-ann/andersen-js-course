@@ -9,7 +9,7 @@ export class Cell {
 
     if (options?.draggable == true) {
       cell.draggable = true;
-      cell.ondrag = ondrag;
+      cell.ondragstart = Cell.ondragstart;
     }
 
     if (options?.style) {
@@ -22,10 +22,10 @@ export class Cell {
     return cell;
   }
 
-  static ondrag(event: DragEvent) {
+  static ondragstart(event: DragEvent) {
     let target = event.target as HTMLElement;
   
-    event.dataTransfer.setData('text', `crafting-${target.id}`);
+    event.dataTransfer.setData('text', target.id);
   }
 
 }
