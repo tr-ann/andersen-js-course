@@ -20,10 +20,10 @@ import './styles/main.css';
 // console.log('------------------ task 4 ------------------');
 // get();
 
-// import { parallel, sequential } from './asynchronous-programming/task5';
+// import { getDataParallel, getDataSequential } from './asynchronous-programming/task5';
 // console.log('------------------ task 5 ------------------');
-// parallel();
-// sequential();
+// getDataParallel();
+// getDataSequential();
 
 // import { task6 } from './asynchronous-programming/task6';
 // console.log('------------------ task 6 ------------------');
