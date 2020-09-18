@@ -1,6 +1,7 @@
 import { Cell } from '../../../common/Cell';
 import { recipesStorage } from '../../../storage/recipes.storage';
 import { eventEmitter } from '../../../events/EventEmitter';
+import { Tooltip } from '../../../common/Tooltip';
 import { RECIPE_CREATED } from '../../../constants/events';
 import { RECIPES_LIST_ELEMENT_ID, RECIPE_ELEMENT_ID } from '../../../constants/elements.id';
 import { Recipe } from '../types/recipe.type';
@@ -24,6 +25,10 @@ class RecipesView {
       let cell = Cell.createElement(`${RECIPE_ELEMENT_ID}#${recipe.id}`, recipe.name, {
         draggable: true,
       });
+      let tooltip = new Tooltip(recipe);
+      cell.dataset.tooltip = tooltip.getTooltip();
+      cell.onmouseover = tooltip.onmouseover;
+      cell.onmouseout = tooltip.onmouseout;
       recipesList.appendChild(cell);
     });
 
