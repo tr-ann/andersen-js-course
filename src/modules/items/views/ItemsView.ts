@@ -15,7 +15,7 @@ class ItemsView {
     const itemsBlock = document.createElement('div');
     // заголовок
     const itemsName = document.createElement('h3');
-    itemsName.textContent = 'Items';
+    itemsName.textContent = 'Предметы';
 
     const itemsList = document.createElement('div');
     itemsList.id = ITEMS_LIST_ELEMENT_ID;

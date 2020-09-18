@@ -38,15 +38,23 @@ class ItemsStorage {
 const basicItems = [
   {
     id: 1,
-    name: 'item1',
+    name: 'хрустальная колба',
   },
   {
     id: 2,
-    name: 'item2',
+    name: 'звездный мох',
   },
   {
     id: 3,
-    name: 'item3',
+    name: 'морской стебель',
+  },
+  {
+    id: 4,
+    name: 'пыльца сирены',
+  },
+  {
+    id: 5,
+    name: 'речной горох',
   }
 ]
 

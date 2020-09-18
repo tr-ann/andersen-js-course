@@ -1,5 +1,5 @@
+import { itemsModel } from "../modules/items/models/ItemsModel";
 import { Recipe } from "../modules/recipes/types/recipe.type";
-import { itemsStorage } from "../storage/items.storage";
 
 export class Tooltip {
 
@@ -11,12 +11,25 @@ export class Tooltip {
   }
 
   private setTooltip(recipe: Recipe) {
-    let ingredientsName = itemsStorage.list()
-      .filter(item => recipe.ingredients.some(itemId => itemId == item.id));
+    let ingredients = recipe.ingredients.map((itemId => itemsModel.getById(itemId)));
+
+    let ingredientsName = new Map<string, number>();
+
+    ingredients.forEach(item => {
+      let curr = ingredientsName.get(item.name);
+
+      if (curr) {
+        ingredientsName.set(item.name, curr + 1);
+      } else {
+        ingredientsName.set(item.name, 1);
+      }
+    });
+
+    let ingredientsStr = Array.from(ingredientsName).map(item => `${item[0]} x${item[1]}`).join(', ');
 
     this.tooltipText = `<span class="tooltip-name">${recipe.name}</span><br>
     имя предмета: ${recipe.itemName}<br>
-    ингредиенты: ${ingredientsName.map(item => item.name).join(', ')}`;
+    ингредиенты: ${ingredientsStr}`;
   }
 
   getTooltip() {

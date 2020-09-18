@@ -15,7 +15,7 @@ class RecipesView {
     const recipesBlock = document.createElement('div');
 
     const recipesName = document.createElement('h3');
-    recipesName.textContent = 'Recipes';
+    recipesName.textContent = 'Рецепты';
 
     const recipesList = document.createElement('div');
     recipesList.id = RECIPES_LIST_ELEMENT_ID;

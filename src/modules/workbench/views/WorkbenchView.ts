@@ -38,13 +38,13 @@ class WorkbenchView {
     const workbenchBlock = document.createElement('div');
     workbenchBlock.id = WORKBENCH_ELEMENT_ID;
     const workbenchName = document.createElement('h3');
-    workbenchName.textContent = 'Workbench';
+    workbenchName.textContent = 'Верстак';
 
     workbenchBlock.appendChild(workbenchName);
     workbenchBlock.appendChild(this.existingRecipeBlock());
 
     let newRecipeButton = document.createElement('button');
-    newRecipeButton.textContent = 'new recipe';
+    newRecipeButton.textContent = 'новый рецепт';
     newRecipeButton.onclick = () => workbenchView.changeRecipeBlock();
     workbenchBlock.appendChild(newRecipeButton);
 
@@ -75,13 +75,13 @@ class WorkbenchView {
 
     let recipeNameDiv = document.createElement('div');
     let recipeNameLabel = document.createElement('label');
-    recipeNameLabel.textContent = 'new recipe name';
+    recipeNameLabel.textContent = 'Название нового рецепта';
     let recipeNameInput = document.createElement('input');
     recipeNameInput.id = NEW_RECIPE_NAME;
 
     let itemNameDiv = document.createElement('div');
     let itemNameLabel = document.createElement('label');
-    itemNameLabel.textContent = 'new item name';
+    itemNameLabel.textContent = 'Название нового предмета';
     let itemNameInput = document.createElement('input');
     itemNameInput.id = NEW_ITEM_NAME;
 
@@ -101,7 +101,7 @@ class WorkbenchView {
     recipeBlock.id = this.existingRecipeBlockId;
 
     let recipeName = document.createElement('div');
-    recipeName.textContent = 'Recipe';
+    recipeName.textContent = 'Рецепт';
 
     let existingRecipeElement = Cell.createElement(`${WORKBENCH_RECIPE_ELEMENT_ID}`, '', {
       style: { minWidth: '50px', minHeight: '50px' },
@@ -137,13 +137,13 @@ class WorkbenchView {
     let buttonBlock = document.createElement('div');
 
     let createItemButton = document.createElement('button');
-    createItemButton.textContent = 'create';
+    createItemButton.textContent = 'Создать';
     createItemButton.onclick = () => {
       this.isCreatingRecipe ? workbenchController.createRecipe() : workbenchController.createItem();
     };
 
     let resetIngredientsButton = document.createElement('button');
-    resetIngredientsButton.textContent = 'reset';
+    resetIngredientsButton.textContent = 'Сбросить';
     resetIngredientsButton.onclick = () => workbenchController.resetIngredients();
 
     buttonBlock.appendChild(createItemButton);

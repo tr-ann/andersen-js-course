@@ -38,21 +38,39 @@ class RecipesStorage {
 const basicRecipes = [
   {
     id: 1,
-    name: 'recipe1',
-    itemName: 'newitem1',
-    ingredients: [1, 2, 3],
+    name: 'зелье всевидящего ока',
+    itemName: 'зелье всевидящего ока',
+    ingredients: [1, 2, 2, 3, 3],
   },
   {
     id: 2,
-    name: 'recipe2',
-    itemName: 'newitem2',
-    ingredients: [1, 2],
+    name: 'зелье легкой поступи',
+    itemName: 'зелье легкой поступи',
+    ingredients: [1, 2, 2, 2],
   },
   {
     id: 3,
-    name: 'recipe3',
-    itemName: 'newitem3',
-    ingredients: [2, 3],
+    name: 'зелье морских туманов',
+    itemName: 'зелье морских туманов',
+    ingredients: [1, 3, 3, 3],
+  },
+  {
+    id: 4,
+    name: 'зелье сокрытия',
+    itemName: 'зелье сокрытия',
+    ingredients: [1, 4, 4, 4],
+  },
+  {
+    id: 5,
+    name: 'береговое зелье маны',
+    itemName: 'береговое зелье маны',
+    ingredients: [1, 5, 5],
+  },
+  {
+    id: 6,
+    name: 'береговое зелье лечения',
+    itemName: 'береговое зелье лечения',
+    ingredients: [1, 4, 4],
   }
 ]
 
