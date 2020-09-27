@@ -1,14 +1,9 @@
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsNotEmpty, IsString, MinLength } from 'class-validator';
+import { UserDto } from './update-user.dto';
 
-export class CreateUserDto {
+export class CreateUserDto extends UserDto {
   @IsString()
   @IsNotEmpty()
+  @MinLength(3)
   login: string;
-
-  @IsString()
-  @IsNotEmpty()
-  name: string;
-
-  @IsNumber()
-  age: number;
 }

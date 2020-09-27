@@ -1,4 +1,4 @@
-import { User, UserSchema } from '../user.model';
+import { User, UserSchema } from '..';
 
 export function beforeCreate() {
   const schema = UserSchema;
