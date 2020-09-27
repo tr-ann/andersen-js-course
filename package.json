@@ -21,7 +21,7 @@
   },
   "lint-staged": {
     "*.ts": [
-      "yarn lint:write",
+      "prettier",
       "git add"
     ]
   },
