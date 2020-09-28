@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /**
  * Нужно переписать функции-конструкторы на классы
  */
@@ -54,4 +55,49 @@ export function task10Old() {
 // Изменить тело функции task10Old, написав task10New, где заиспользуете
 // класс так, как использовалась функция-конструктор B в task10Old
 
-export function task10New() {}
+class NewA {
+  constructor(name) {
+    this.name = name;
+  }
+
+  getName() {
+    return this.name;
+  }
+}
+
+class NewB extends NewA {
+  constructor(name, age) {
+    super(name);
+    this.age = age;
+  }
+
+  static defaultUser() {
+    return new NewB('test', 0);
+  }
+
+  getName(text) {
+    return super.getName() + ' ' + text;
+  }
+
+  getAge() {
+    return this.age;
+  }
+
+  get color() {
+    return this._color;
+  }
+
+  set color(color) {
+    this._color = color;
+  }
+}
+
+export function task10New() {
+  var b = new NewB('Max', 12);
+  console.log(b.getName('Best'));
+  console.log(b.getAge());
+  console.log(NewB.defaultUser());
+  b.color = 'red';
+  console.log(b.color);
+  return b;
+}

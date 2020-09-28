@@ -8,13 +8,15 @@
  * membersOnActiveMeetups(meetups); // 1500
  */
 
-// Раскомментировать нижнее, при начале реализации
+export const meetups = [
+  { name: 'JavaScript', isActive: true, members: 100 },
+  { name: 'Angular', isActive: true, members: 900 },
+  { name: 'Node', isActive: false, members: 600 },
+  { name: 'React', isActive: true, members: 500 },
+];
 
-// const meetups = [
-//   { name: 'JavaScript', isActive: true, members: 100 },
-//   { name: 'Angular', isActive: true, members: 900 },
-//   { name: 'Node', isActive: false, members: 600 },
-//   { name: 'React', isActive: true, members: 500 },
-// ];
+export function membersOnActiveMeetups(meetups) {
+  let activeMeetups = meetups.filter((value) => value.isActive);
 
-// function membersOnActiveMeetups(meetups) {}
+  return activeMeetups.reduce((prev, curr) => prev + curr.members, 0);
+}
